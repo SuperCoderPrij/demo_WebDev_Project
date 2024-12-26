@@ -1,4 +1,4 @@
-//ye express, mongoose, etc ko require karne ka block hai
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.post('/addUser', async (req, res) => { //this route is not working for some reason idk
+app.post('/addUser', async (req, res) => { 
   const { username, email, password } = req.body;
   try {
     const newUser = new User({ username, email, password });
@@ -43,7 +43,7 @@ app.get('/userList', async (req, res) => {
   }
 });
 
-app.get('/userList/:id', async (req, res) => {  //dynamic routes ke liye
+app.get('/userList/:id', async (req, res) => {  //dynamic routes 
   try {
     const user = await User.findById(req.params.id);
     res.render('userList', { users: [user] });
@@ -63,7 +63,7 @@ app.get('/deleteUser/:id', async (req, res) => { //direct delete
   }
 });
 
-//5000 port use kiya hu kyu ki mere system pe pehle se 3000 pe kuch orr chal raha tha
+//Listening on port 5000
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
